@@ -1,7 +1,11 @@
 // src/supabaseClient.ts
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://xyzcompany.supabase.co'; // Remplacez par votre URL Supabase
-const supabaseKey = 'your-anon-key'; // Remplacez par votre clé API
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL as string;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY as string;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Missing Supabase URL or anonymous key');
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);

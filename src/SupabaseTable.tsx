@@ -5,28 +5,45 @@ import { Box, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 
 const SupabaseTable: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await supabase
-        .from('form_responses') // Nom de la table
-        .select('*');
+      try {
+        const { data, error } = await supabase
+          .from('form_responses') // Nom de la table
+          .select('*');
 
-      if (error) {
-        console.error('Error fetching data:', error);
-      } else {
+        if (error) {
+          throw error;
+        }
+
         setData(data);
+      } catch (err: any) {
+        console.error('Error fetching data:', err);
+        setError(err.message);
       }
     };
 
     fetchData();
   }, []);
 
+  if (error) {
+    return <Box>Error: {error}</Box>;
+  }
+
   if (data.length === 0) {
     return <Box>Loading...</Box>;
   }
 
   const headers = Object.keys(data[0]);
+
+  const renderCell = (cellData: any) => {
+    if (typeof cellData === 'object' && cellData !== null) {
+      return JSON.stringify(cellData);
+    }
+    return cellData;
+  };
 
   return (
     <Box overflowX="auto">
@@ -42,7 +59,7 @@ const SupabaseTable: React.FC = () => {
           {data.map((row, index) => (
             <Tr key={index}>
               {headers.map((header) => (
-                <Td key={header}>{row[header]}</Td>
+                <Td key={header}>{renderCell(row[header])}</Td>
               ))}
             </Tr>
           ))}
