@@ -5,7 +5,17 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
   return (
-    <Box as="nav" w="200px" p="5" bg="gray.100" h="100vh">
+    <Box
+      as="nav"
+      w="200px"
+      p="5"
+      bg="gray.100"
+      h="100vh"
+      position="fixed"
+      top={0}
+      left={0}
+      zIndex={10} // Assurez-vous que le z-index est suffisamment élevé
+    >
       <VStack spacing="5" align="start">
         <Link as={RouterLink} to="/">
           Home

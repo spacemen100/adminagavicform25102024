@@ -116,12 +116,12 @@ const SupabaseTableDesign: React.FC = () => {
   };
 
   return (
-    <Box overflowX="auto">
+    <Box overflowX="auto" overflowY="auto" height="100vh">
       <Table variant="simple">
         <Thead>
           <Tr>
             {headers.map((header) => (
-              <Th key={header}>{renderHeader(header)}</Th>
+              <Th key={header} position="sticky" top={0} bg="white" zIndex={5}>{renderHeader(header)}</Th> 
             ))}
           </Tr>
         </Thead>
