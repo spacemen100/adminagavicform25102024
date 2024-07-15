@@ -6,6 +6,7 @@ import { Box, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 const SupabaseTableDesign: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [selectedRow, setSelectedRow] = useState<number | null>(null); // État pour la ligne sélectionnée
 
   useEffect(() => {
     const fetchData = async () => {
@@ -127,7 +128,12 @@ const SupabaseTableDesign: React.FC = () => {
         </Thead>
         <Tbody>
           {data.map((row, index) => (
-            <Tr key={index}>
+            <Tr
+              key={index}
+              onClick={() => setSelectedRow(index)}
+              bg={selectedRow === index ? 'blue.100' : undefined} // Appliquez une couleur de fond si la ligne est sélectionnée
+              cursor="pointer" // Change le curseur pour indiquer que la ligne est cliquable
+            >
               {headers.map((header) => (
                 <Td key={header}>{renderCell(row[header])}</Td>
               ))}
