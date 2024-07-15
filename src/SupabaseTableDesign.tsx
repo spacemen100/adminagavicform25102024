@@ -50,13 +50,34 @@ const SupabaseTableDesign: React.FC = () => {
   const headers = Object.keys(data[0]);
 
   const renderHeader = (header: string) => {
-    if (header === 'step1') {
-      return 'Quel est votre projet d’investissement ?';
+    switch (header) {
+      case 'step1':
+        return 'Quel est votre projet d’investissement ?';
+      case 'step2':
+        return 'Quel montant souhaitez-vous placer chez AGAVIC ?';
+      case 'step3':
+        return 'Quel montant régulier souhaitez-vous placer chaque mois ?';
+      case 'step4':
+        return 'Dans combien de temps souhaitez-vous profiter de cet investissement ?';
+      case 'step5':
+        return 'Êtes-vous résident fiscal français ?';
+      case 'step6':
+        return 'Avez-vous une préférence pour des investissements respectant les critères environnementaux, sociaux et de gouvernance (ESG) ?';
+      case 'step7':
+        return 'Combien d\'enfants avez-vous à charge ?';
+      case 'step8':
+        return 'Quels sont les revenus annuels bruts de votre foyer ?';
+      case 'step9':
+        return 'Êtes-vous propriétaire de votre résidence principale ?';
+      case 'step10':
+        return 'Quel est le montant de votre loyer mensuel ou crédit immobilier ?';
+      case 'step11':
+        return 'Quelle est la valeur de votre patrimoine immobilier NET ?';
+      case 'step12':
+        return 'Quel est le montant estimé de votre patrimoine financier ?';
+      default:
+        return header;
     }
-    if (header === 'step2') {
-      return 'Quel montant souhaitez-vous placer chez AGAVIC ?';
-    }
-    return header;
   };
 
   const renderCell = (cellData: any) => {
