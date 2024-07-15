@@ -18,7 +18,18 @@ const SupabaseTable: React.FC = () => {
           throw error;
         }
 
-        setData(data);
+        // Filtrer les lignes où toutes les colonnes step1 à step20 sont nulles ou vides
+        const filteredData = data.filter((row: any) => {
+          for (let i = 1; i <= 20; i++) {
+            const stepValue = row[`step${i}`];
+            if (stepValue !== null && stepValue !== '') {
+              return true;
+            }
+          }
+          return false;
+        });
+
+        setData(filteredData);
       } catch (err: any) {
         console.error('Error fetching data:', err);
         setError(err.message);
