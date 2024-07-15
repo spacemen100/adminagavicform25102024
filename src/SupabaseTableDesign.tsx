@@ -60,21 +60,49 @@ const SupabaseTableDesign: React.FC = () => {
       case 'step4':
         return 'Dans combien de temps souhaitez-vous profiter de cet investissement ?';
       case 'step5':
-        return 'Êtes-vous résident fiscal français ?';
+        return 'Date de naissance';
       case 'step6':
-        return 'Avez-vous une préférence pour des investissements respectant les critères environnementaux, sociaux et de gouvernance (ESG) ?';
+        return 'Êtes-vous résident fiscal français ?';
       case 'step7':
-        return 'Combien d\'enfants avez-vous à charge ?';
+        return 'Avez-vous une préférence pour des investissements respectant les critères environnementaux, sociaux et de gouvernance (ESG) ?';
       case 'step8':
-        return 'Quels sont les revenus annuels bruts de votre foyer ?';
+        return 'Combien d\'enfants avez-vous à charge ?';
       case 'step9':
-        return 'Êtes-vous propriétaire de votre résidence principale ?';
+        return 'Quels sont les revenus annuels bruts de votre foyer ?';
       case 'step10':
-        return 'Quel est le montant de votre loyer mensuel ou crédit immobilier ?';
+        return 'Êtes-vous propriétaire de votre résidence principale ?';
       case 'step11':
-        return 'Quelle est la valeur de votre patrimoine immobilier NET ?';
+        return 'Quel est le montant de votre loyer mensuel ou crédit immobilier ?';
       case 'step12':
+        return 'Quelle est la valeur de votre patrimoine immobilier NET ?';
+      case 'step13':
         return 'Quel est le montant estimé de votre patrimoine financier ?';
+      case 'step14':
+        return 'Combien arrivez-vous à mettre de côté en fin de mois ?';
+      case 'step15':
+        return 'Pourriez-vous avoir besoin de toute l\'épargne placée chez PatriLife d\'ici 2 ans ?';
+      case 'step16':
+        return 'Pourriez-vous avoir besoin de la moitié de votre investissement avant 25 ans ?';
+      case 'step17':
+        return 'Avez-vous déjà placé de l\'argent sur un contrat d\'assurance-vie, un compte-titres ou un plan d\'épargne en actions (PEA) ?';
+      case 'step18':
+        return 'Une perspective de gain élevé implique un risque de perte en capital fort';
+      case 'step19':
+        return 'Un ETF est un fonds à capital garanti';
+      case 'step20':
+        return 'En déléguant la gestion de mon portefeuille à une société de gestion, je renonce à prendre moi-même les décisions d’investissement sur celui-ci';
+      case 'step21':
+        return 'Avez-vous déjà subi des pertes sur vos placements financiers ?';
+      case 'step22':
+        return 'Quel rapport gains / pertes êtes-vous prêt à accepter en investissant 10 000 € sur 5 ans ?';
+      case 'step23':
+        return 'Quel rapport gains / pertes êtes-vous prêt à accepter en investissant sur 10 ans ?';
+      case 'step24':
+        return 'Si votre investissement perd 10% de sa valeur en 3 mois. Que faites-vous ?';
+      case 'step25':
+        return 'Quelle est votre date de naissance ?';
+      case 'step26':
+        return 'Informations de contact';
       default:
         return header;
     }
