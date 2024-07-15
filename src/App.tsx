@@ -5,8 +5,8 @@ import { Box, Flex } from '@chakra-ui/react';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import About from './About';
-import Contact from './Contact';
 import SupabaseTable from './SupabaseTable';
+import SupabaseTableDesign from './SupabaseTableDesign';
 
 const App: React.FC = () => {
   return (
@@ -17,8 +17,8 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
             <Route path="/supabase-table" element={<SupabaseTable />} />
+            <Route path="/supabase-table-design" element={<SupabaseTableDesign />} />
           </Routes>
         </Box>
       </Flex>
