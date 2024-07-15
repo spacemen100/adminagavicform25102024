@@ -6,6 +6,7 @@ import Sidebar from './Sidebar';
 import Home from './Home';
 import About from './About';
 import Contact from './Contact';
+import SupabaseTable from './SupabaseTable';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/supabase-table" element={<SupabaseTable />} />
           </Routes>
         </Box>
       </Flex>

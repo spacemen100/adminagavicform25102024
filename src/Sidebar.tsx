@@ -16,6 +16,9 @@ const Sidebar: React.FC = () => {
         <Link as={RouterLink} to="/contact">
           Contact
         </Link>
+        <Link as={RouterLink} to="/supabase-table">
+          Supabase Table
+        </Link>
       </VStack>
     </Box>
   );
