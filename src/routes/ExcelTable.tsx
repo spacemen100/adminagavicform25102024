@@ -62,24 +62,26 @@ const ExcelTable: React.FC = () => {
       <Button onClick={downloadCSV} mb={4}>
         Download CSV
       </Button>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            {headers.map((header) => (
-              <Th key={header}>{header}</Th>
-            ))}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {data.map((row, index) => (
-            <Tr key={index}>
+      <Box display="none"> {/* Hide the table from the user */}
+        <Table variant="simple">
+          <Thead>
+            <Tr>
               {headers.map((header) => (
-                <Td key={header}>{renderCell(row[header])}</Td>
+                <Th key={header}>{header}</Th>
               ))}
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {data.map((row, index) => (
+              <Tr key={index}>
+                {headers.map((header) => (
+                  <Td key={header}>{renderCell(row[header])}</Td>
+                ))}
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
     </Box>
   );
 };
