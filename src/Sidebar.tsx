@@ -20,8 +20,8 @@ const Sidebar: React.FC = () => {
         <Link as={RouterLink} to="/">
           Home
         </Link>
-        <Link as={RouterLink} to="/about">
-          About
+        <Link as={RouterLink} to="/excel-table">
+          Tableau Excel
         </Link>
         <Link as={RouterLink} to="/supabase-table-design">
           Supabase Table Design
