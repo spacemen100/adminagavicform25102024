@@ -118,11 +118,11 @@ const SupabaseTableDesign: React.FC = () => {
 
   return (
     <Box overflowX="auto" overflowY="auto" height="100vh">
-      <Table variant="simple">
+      <Table variant="striped" colorScheme="blue">
         <Thead>
           <Tr>
             {headers.map((header) => (
-              <Th key={header} position="sticky" top={0} bg="white" zIndex={5}>{renderHeader(header)}</Th> 
+              <Th key={header} position="sticky" top={0} bg="white" zIndex={5}>{renderHeader(header)}</Th>
             ))}
           </Tr>
         </Thead>
@@ -131,7 +131,7 @@ const SupabaseTableDesign: React.FC = () => {
             <Tr
               key={index}
               onClick={() => setSelectedRow(index)}
-              bg={selectedRow === index ? 'blue.100' : undefined} // Appliquez une couleur de fond si la ligne est sélectionnée
+              bg={selectedRow === index ? 'blue.300' : undefined} // Appliquez une couleur de fond si la ligne est sélectionnée
               cursor="pointer" // Change le curseur pour indiquer que la ligne est cliquable
             >
               {headers.map((header) => (
@@ -140,7 +140,7 @@ const SupabaseTableDesign: React.FC = () => {
             </Tr>
           ))}
         </Tbody>
-      </Table>
+              </Table>
     </Box>
   );
 };
