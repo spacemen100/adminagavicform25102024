@@ -3,10 +3,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Box, Flex } from '@chakra-ui/react';
 import Sidebar from './Sidebar';
-import Home from './Home';
-import About from './About';
-import SupabaseTable from './SupabaseTable';
-import SupabaseTableDesign from './SupabaseTableDesign';
+import Home from './routes/Home';
+import About from './routes/About';
+import SupabaseTable from './routes/SupabaseTable';
+import SupabaseTableDesign from './routes/SupabaseTableDesign';
 
 const App: React.FC = () => {
   return (

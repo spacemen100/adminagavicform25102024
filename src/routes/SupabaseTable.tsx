@@ -1,6 +1,6 @@
 // src/SupabaseTable.tsx
 import React, { useEffect, useState } from 'react';
-import { supabase } from './supabaseClient';
+import { supabase } from '../supabaseClient';
 import { Box, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 
 const SupabaseTable: React.FC = () => {
