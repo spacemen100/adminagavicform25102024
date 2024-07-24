@@ -168,7 +168,7 @@ const SupabaseTableDesign: React.FC = () => {
       <Box position="absolute" top="10px" left="10px" zIndex={10}>
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-            Options
+            Filtre
           </MenuButton>
           <MenuList zIndex={20}>
             <MenuItem onClick={() => applyFilter('date')}>Date (ce mois-ci)</MenuItem>
