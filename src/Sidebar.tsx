@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
       position="fixed"
       top={0}
       left={0}
-      zIndex={10} // Assurez-vous que le z-index est suffisamment élevé
+      zIndex={10}
     >
       <VStack spacing="5" align="start">
         <Link as={RouterLink} to="/">
@@ -28,6 +28,15 @@ const Sidebar: React.FC = () => {
         </Link>
         <Link as={RouterLink} to="/supabase-table">
           Supabase Table
+        </Link>
+        <Link as={RouterLink} to="/filter-amount-less-than-1000">
+          Montant inférieur à 1000€
+        </Link>
+        <Link as={RouterLink} to="/filter-amount-greater-than-1000">
+          Montant supérieur à 1000€
+        </Link>
+        <Link as={RouterLink} to="/filter-date-this-month">
+          Date ce mois-ci
         </Link>
       </VStack>
     </Box>
