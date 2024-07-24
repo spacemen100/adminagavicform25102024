@@ -1,10 +1,13 @@
 // src/SupabaseTableDesign.tsx
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
-import { Box, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
+import { Box, Table, Thead, Tbody, Tr, Th, Td, Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import dayjs from 'dayjs';
 
 const SupabaseTableDesign: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
+  const [filteredData, setFilteredData] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [selectedRow, setSelectedRow] = useState<number | null>(null); // État pour la ligne sélectionnée
 
@@ -31,6 +34,7 @@ const SupabaseTableDesign: React.FC = () => {
         });
 
         setData(filteredData);
+        setFilteredData(filteredData);
       } catch (err: any) {
         console.error('Error fetching data:', err);
         setError(err.message);
@@ -40,15 +44,58 @@ const SupabaseTableDesign: React.FC = () => {
     fetchData();
   }, []);
 
+  const applyFilter = (filterType: string) => {
+    let newFilteredData = [...data];
+    
+    switch (filterType) {
+      case 'date':
+        const currentMonth = dayjs().month();
+        const currentYear = dayjs().year();
+        newFilteredData = newFilteredData.filter(row => {
+          const rowDate = dayjs(row.created_at);
+          return rowDate.month() === currentMonth && rowDate.year() === currentYear;
+        });
+        break;
+      case 'complete':
+        newFilteredData = newFilteredData.filter((row: any) => {
+          for (let i = 1; i <= 20; i++) {
+            const stepValue = row[`step${i}`];
+            if (stepValue === null || stepValue === '') {
+              return false;
+            }
+          }
+          return true;
+        });
+        break;
+      case 'amount_greater_than_1000':
+        newFilteredData = newFilteredData.filter(row => {
+          const amount = parseFloat(row.step2);
+          return !isNaN(amount) && amount > 1000;
+        });
+        break;
+      case 'amount_less_than_1000':
+        newFilteredData = newFilteredData.filter(row => {
+          const amount = parseFloat(row.step2);
+          return isNaN(amount) || amount < 1000;
+        });
+        break;
+      default:
+        break;
+    }
+
+    setFilteredData(newFilteredData);
+  };
+
   if (error) {
     return <Box>Error: {error}</Box>;
   }
 
-  if (data.length === 0) {
+  if (filteredData.length === 0) {
     return <Box>Loading...</Box>;
   }
 
-  const headers = Object.keys(data[0]);
+  // Retrieve headers and filter out the 'ID' column
+  const headers = Object.keys(filteredData[0]).filter(header => header !== 'id');
 
   const renderHeader = (header: string) => {
     switch (header) {
@@ -117,7 +164,20 @@ const SupabaseTableDesign: React.FC = () => {
   };
 
   return (
-    <Box overflowX="auto" overflowY="auto" height="100vh">
+    <Box position="relative" overflowX="auto" overflowY="auto" height="100vh">
+      <Box position="absolute" top="10px" left="10px" zIndex={10}>
+        <Menu>
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            Options
+          </MenuButton>
+          <MenuList zIndex={20}>
+            <MenuItem onClick={() => applyFilter('date')}>Date (ce mois-ci)</MenuItem>
+            <MenuItem onClick={() => applyFilter('complete')}>Questionnaire totalement rempli</MenuItem>
+            <MenuItem onClick={() => applyFilter('amount_greater_than_1000')}>Montant supérieur à 1000€</MenuItem>
+            <MenuItem onClick={() => applyFilter('amount_less_than_1000')}>Montant inférieur à 1000€ ou absent</MenuItem>
+          </MenuList>
+        </Menu>
+      </Box>
       <Table variant="striped" colorScheme="blue">
         <Thead>
           <Tr>
@@ -127,7 +187,7 @@ const SupabaseTableDesign: React.FC = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((row, index) => (
+          {filteredData.map((row, index) => (
             <Tr
               key={index}
               onClick={() => setSelectedRow(index)}
@@ -140,7 +200,7 @@ const SupabaseTableDesign: React.FC = () => {
             </Tr>
           ))}
         </Tbody>
-              </Table>
+      </Table>
     </Box>
   );
 };
