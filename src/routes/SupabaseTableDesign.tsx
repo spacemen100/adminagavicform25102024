@@ -148,9 +148,9 @@ const SupabaseTableDesign: React.FC = () => {
       case 'step24':
         return 'Si votre investissement perd 10% de sa valeur en 3 mois. Que faites-vous ?';
       case 'step25':
-        return 'Quelle est votre date de naissance ?';
+        return 'What is your email ?';
       case 'step26':
-        return 'Informations de contact';
+        return 'Informations de contact Téléphone';
       default:
         return header;
     }
